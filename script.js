@@ -13,7 +13,7 @@ const dentists = [
         name: "Bealby & Jones",
         phoneNumber: "0114 272 9927",
         address: "17 Northumberland Road, SHEFFIELD, S10 2TT",
-        websiteURL: "http://www.bealbyandjones.co.uk/",
+        websiteURL: "https://www.bealbyandjones.co.uk/",
         whitenPrice: 350,
 
     },
@@ -21,7 +21,7 @@ const dentists = [
         name: "Sharrow Vale Dental Care",
         phoneNumber: "0114 268 6076",
         address: "262 Sharrow Vale Road, Hunters Bar, SHEFFIELD, South Yorkshire, S11 8ZH",
-        websiteURL: "http://www.sharrowvaledentalcare.co.uk/",
+        websiteURL: "https://www.sharrowvaledentalcare.co.uk/",
         whitenPrice: 450, 
 
     }
@@ -33,8 +33,7 @@ dentists.sort((a,b) => {
     return a.whitenPrice - b.whitenPrice
 })
 
-// Looping through the array to create a listing for each object in the array //
-
+// Creating function which will generate and insert the HTML for the listing //
 
 const createListing = function(name, phoneNumber,address, websiteURL, whitenPrice) {
     // Selecting the parent node
@@ -47,24 +46,21 @@ const createListing = function(name, phoneNumber,address, websiteURL, whitenPric
     //Creating the HTML to go inside that div
     let htmlBlock = 
     `<div class="info">
-        <div>
-            <h2>${name}</h2>
-            <p>${address}</p>
-        </div>
-        <div class="buttons">
-            <a href="${websiteURL}"><button class="cta website">
-                <h4>Go to Website</h4>
-            </button></a>
-            <button class="cta telephone">
-                <p>Call</p>
-                <h4>${phoneNumber}</h4>
-            </button>
-        </div>
+    <div>
+        <h2>${name}</h2>
+        <p>${address}</p>
     </div>
-    <div class="price">
-        <p1>From</p1>
-        <h3>£${whitenPrice}</h3>
-    </div>`
+    <div class="buttons">
+        <a href="${websiteURL}" target="_blank" class="cta website"><h4>Go to website</h4></a>
+        <a href="tel:${phoneNumber}" class="cta telephone">
+            <h4>Call now</h4>
+        </a>
+    </div>
+</div>
+<div class="price">
+    <p1>From</p1>
+    <h3>£${whitenPrice}</h3>
+</div>`
 
     // Putting the HTML inside the div
     listing.innerHTML = htmlBlock
@@ -74,5 +70,8 @@ const createListing = function(name, phoneNumber,address, websiteURL, whitenPric
     contentSection.appendChild(listing)
 }
 
-createListing("Etienne's dentist","11111111", "her is address","https//www.youtube.com",100)
+// Looping through the array of dentist objects to add each one to a listing block of HTML
+dentists.forEach(element => {
+    createListing(element.name,element.phoneNumber,element.address,element.websiteURL,element.whitenPrice)
+});
 
