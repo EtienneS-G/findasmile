@@ -17,7 +17,7 @@ const createListing = function(name, phoneNumber,address, websiteURL, whitenPric
     <div class="buttons">
         <a href="${websiteURL}" target="_blank" class="cta website"><h4>Go to website</h4></a>
         <a href="tel:${phoneNumber}" class="cta telephone">
-            <h4>Call now</h4>
+            <h4>${phoneNumber}</h4>
         </a>
     </div>
     </div>
